@@ -1,16 +1,38 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Axios } from "axios";
+import Axios from "axios";
+import { Toaster, toast } from "react-hot-toast"; // ✅ Importing React Hot Toast
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [user, setUser] = React.useState({
     email: "",
     password: "",
   });
 
-  const onLogin = async () => {};
+  useEffect(() => {
+    setButtonDisabled(!(user.email && user.password));
+  }, [user]);
+
+  const onLogin = async () => {
+    try {
+      toast.loading("Logging in...");
+      const response = await Axios.post("/api/users/login", user);
+
+      toast.dismiss(); // Remove loading toast
+      toast.success("Login successful! 🎉");
+
+      console.log("Login successful", response.data);
+      router.push(`/profile/${response.data.user.username}`);
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Signup failed. Please try again. ❌");
+      console.error("Login failed", error);
+    }
+  };
   return (
     <div className="flex justify-center items-center h-screen bg-slate-900">
       <div className="bg-slate-700 p-8 flex justify-center items-center flex-col rounded-xl w-[400px]">

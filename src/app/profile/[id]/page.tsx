@@ -1,4 +1,5 @@
-export default function UserProfile({ params }: any) {
+export default async function UserProfile({ params }: any) {
+  const { id } = await params;
   return (
     <div className="flex justify-center items-center h-screen bg-slate-900 text-white text-4xl">
       Profile:
