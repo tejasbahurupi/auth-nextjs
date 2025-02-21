@@ -26,7 +26,7 @@ export default function LoginPage() {
       toast.success("Login successful! 🎉");
 
       console.log("Login successful", response.data);
-      router.push(`/profile/${response.data.user.username}`);
+      router.push(`/profile`);
     } catch (error) {
       toast.dismiss();
       toast.error("Signup failed. Please try again. ❌");
@@ -63,7 +63,7 @@ export default function LoginPage() {
         <button
           onClick={onLogin}
           className="bg-blue-500 m-3 text-white p-1 rounded-md focus:outline-none focus:border-gray-500">
-          Sign Up
+          Login
         </button>
         <Link href="/signup">Signup Here</Link>
       </div>
