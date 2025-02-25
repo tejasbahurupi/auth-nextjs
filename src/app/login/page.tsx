@@ -35,6 +35,7 @@ export default function LoginPage() {
   };
   return (
     <div className="flex justify-center items-center h-screen bg-slate-900">
+      <Toaster />
       <div className="bg-slate-700 p-8 flex justify-center items-center flex-col rounded-xl w-[400px]">
         <h1 className="text-center text-4xl">Login</h1>
         <br />

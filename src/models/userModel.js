@@ -24,10 +24,22 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    forgetPasswordToken: String,
-    forgetPasswordTokenExpiry: Date,
-    verifyToken: String,
-    verifyTokenExpiry: Date,
+    forgetPasswordToken: {
+      type: String,
+      default: null,
+    },
+    forgetPasswordTokenExpiry: {
+      type: Date,
+      default: null,
+    },
+    verifyToken: {
+      type: String,
+      default: null,
+    },
+    verifyTokenExpiry: {
+      type: Date,
+      default: null,
+    },
   },
   { timestamps: true }
 );

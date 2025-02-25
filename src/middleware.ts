@@ -5,7 +5,8 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const token = request.cookies.get("token")?.value || "";
 
-  const isPublicPath = path === "/login" || path === "/signup";
+  const isPublicPath =
+    path === "/login" || path === "/signup" || path === "/verifyemail";
 
   // Redirect logic for logged-in users trying to access public pages
   if (token && isPublicPath) {
@@ -22,5 +23,12 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/profile", "/profile/:id", "/login", "/signup"],
+  matcher: [
+    "/",
+    "/profile",
+    "/profile/:id",
+    "/login",
+    "/signup",
+    "/verifyemail",
+  ],
 };

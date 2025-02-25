@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { Toaster, toast } from "react-hot-toast"; // ✅ Importing React Hot Toast
+import { Toaster, toast } from "react-hot-toast"; //✅Importing React Hot Toast
 
 export default function Signup() {
   const router = useRouter();
@@ -28,9 +28,11 @@ export default function Signup() {
 
       console.log("Signup successful", response.data);
       router.push("/login");
-    } catch (error) {
+    } catch (error: any) {
       toast.dismiss();
-      toast.error("Signup failed. Please try again. ❌");
+      toast.error(
+        "Signup failed. Please try again. ❌" + error.response.data.error!
+      );
       console.error("Signup failed", error);
     }
   };
